@@ -1,81 +1,309 @@
- <!DOCTYPE html><html lang="ar" dir="rtl">
+   <!DOCTYPE html>
+<html lang="ar" dir="rtl">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>سوق اليوزرات - علي محسن</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <style>
-    body {
-      background-color: #ffffff;
-      color: #333;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    }
-    .fade-in {
-      opacity: 0;
-      animation: fadeIn 1.5s forwards;
-    }
-    @keyframes fadeIn {
-      to { opacity: 1; }
-    }
-    .card-hover:hover {
-      transform: scale(1.05);
-      box-shadow: 0 10px 20px rgba(0,0,0,0.2);
-      transition: all 0.3s ease;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>سوق اليوزرات | علي محسن</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --primary: #00f2fe;     /* سماوي نيون */
+            --secondary: #4facfe;   /* أزرق */
+            --accent: #ff0055;      /* لون للتمييز */
+            --ton-color: #0098ea;   /* لون عملة تون */
+            --dark-bg: #0b0f19;     /* خلفية داكنة جداً */
+            --glass: rgba(255, 255, 255, 0.05);
+            --border: rgba(255, 255, 255, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Cairo', sans-serif;
+        }
+
+        body {
+            background-color: var(--dark-bg);
+            color: #fff;
+            overflow-x: hidden;
+        }
+
+        /* خلفية متحركة */
+        .bg-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: radial-gradient(circle at 10% 20%, rgba(0, 242, 254, 0.1), transparent 40%),
+                        radial-gradient(circle at 90% 80%, rgba(79, 172, 254, 0.1), transparent 40%);
+            z-index: -1;
+        }
+
+        /* الهيدر */
+        header {
+            padding: 20px;
+            text-align: center;
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(11, 15, 25, 0.8);
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 900;
+            background: linear-gradient(to right, #fff, var(--primary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* القسم الرئيسي */
+        .hero {
+            padding: 60px 20px;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            line-height: 1.4;
+            animation: fadeInDown 1s ease;
+        }
+
+        .hero span {
+            color: var(--primary);
+            text-shadow: 0 0 15px var(--primary);
+        }
+
+        .hero p {
+            color: #a0aab5;
+            max-width: 500px;
+            margin: 0 auto 30px;
+            font-size: 1.1rem;
+        }
+
+        .cta-btn {
+            display: inline-block;
+            padding: 12px 35px;
+            background: linear-gradient(45deg, var(--ton-color), var(--secondary));
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            box-shadow: 0 0 20px rgba(0, 152, 234, 0.4);
+            transition: 0.3s;
+            animation: pulse 2s infinite;
+        }
+
+        .cta-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 40px rgba(0, 152, 234, 0.7);
+        }
+
+        /* شبكة المنتجات (اليوزرات) */
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .product-card {
+            background: var(--glass);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 30px;
+            text-align: center;
+            position: relative;
+            transition: 0.4s;
+            backdrop-filter: blur(5px);
+            overflow: hidden;
+            opacity: 0; /* للأنميشن */
+            transform: translateY(30px);
+        }
+
+        .product-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            transform: scaleX(0);
+            transition: 0.4s;
+            transform-origin: left;
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--primary);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+        }
+
+        .product-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .username {
+            font-size: 1.8rem;
+            font-weight: bold;
+            margin: 15px 0;
+            color: #fff;
+            letter-spacing: 1px;
+        }
+
+        .badge {
+            font-size: 0.8rem;
+            padding: 5px 12px;
+            border-radius: 15px;
+            background: rgba(255,255,255,0.1);
+            color: #ccc;
+        }
+
+        .price-tag {
+            font-size: 1.5rem;
+            color: var(--ton-color);
+            font-weight: 900;
+            margin: 15px 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+        }
+
+        .buy-btn {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            border: 1px solid var(--primary);
+            background: transparent;
+            color: var(--primary);
+            border-radius: 10px;
+            cursor: pointer;
+            transition: 0.3s;
+            font-weight: bold;
+        }
+
+        .buy-btn:hover {
+            background: var(--primary);
+            color: #000;
+            box-shadow: 0 0 15px var(--primary);
+        }
+
+        /* الفوتر */
+        footer {
+            margin-top: 50px;
+            padding: 40px 20px;
+            text-align: center;
+            border-top: 1px solid var(--border);
+            background: rgba(0,0,0,0.3);
+        }
+
+        .social-link {
+            font-size: 1.2rem;
+            color: #a0aab5;
+            text-decoration: none;
+            transition: 0.3s;
+        }
+        .social-link:hover { color: var(--primary); }
+
+        /* حركات */
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.03); }
+            100% { transform: scale(1); }
+        }
+        .show { opacity: 1; transform: translateY(0); }
+
+    </style>
 </head>
-<body>  <!-- Header -->  <header class="bg-white shadow-md p-6 fixed w-full z-50">
-    <div class="max-w-6xl mx-auto flex justify-between items-center">
-      <h1 class="text-3xl font-bold flex items-center">🟦🇮🇶 سوق اليوزرات - علي محسن</h1>
-      <a href="#contact" class="bg-blue-600 hover:bg-blue-500 text-white px-4 py-2 rounded-lg">تواصل معي</a>
-    </div>
-  </header>  <!-- Hero Section -->  <section class="max-w-6xl mx-auto mt-24 p-10 text-center fade-in rounded-2xl">
-    <h2 class="text-4xl md:text-5xl font-bold mb-4">مرحباً بك في منصتي لبيع وشراء يوزرات التليكرام</h2>
-    <p class="text-gray-600 text-lg md:text-xl mb-6">تواصل عبر يوزري <strong>@vampire2boy</strong> وادفع مباشرة عبر محفظة TON.</p>
-    <a href="#listings" class="bg-blue-600 hover:bg-blue-500 text-white px-6 py-3 rounded-full text-lg">استعرض اليوزرات</a>
-  </section>  <!-- Listings Section -->  <section id="listings" class="max-w-6xl mx-auto p-6 mt-16">
-    <h3 class="text-3xl font-semibold mb-8 text-center fade-in">اليوزرات المتاحة</h3>
-    <div class="grid md:grid-cols-3 gap-8">
-      <!-- Example Card -->
-      <div class="bg-gray-100 p-6 rounded-3xl border border-gray-200 card-hover">
-        <div class="text-lg font-mono mb-2">@iraqstore</div>
-        <div class="text-gray-500 text-sm mb-4">التصنيف: بزنس</div>
-        <div class="flex justify-between items-center">
-          <span class="text-green-500 font-bold text-lg">80 TON</span>
-          <a href="#contact" class="text-blue-500 hover:underline">شراء</a>
+<body>
+
+    <div class="bg-animation"></div>
+
+    <header>
+        <div class="logo">ALI MARKET 🇮🇶</div>
+    </header>
+
+    <section class="hero">
+        <h1>سوق اليوزرات <br><span>الأكثر تميزاً</span></h1>
+        <p>اقتنِ يوزرات تليجرام نادرة ومميزة بأسعار تنافسية والدفع عبر TON.</p>
+        <a href="https://t.me/vampire2boy" target="_blank" class="cta-btn">
+            <i class="fab fa-telegram-plane"></i> تواصل معي للشراء
+        </a>
+    </section>
+
+    <h2 style="text-align:center; margin-bottom:30px; color:var(--secondary);">💎 اليوزرات المتاحة</h2>
+
+    <div class="products-grid">
+        <div class="product-card scroll-el">
+            <span class="badge">بزنس</span>
+            <div class="username">@iraqstore</div>
+            <div class="price-tag">
+                <i class="fas fa-gem"></i> 80 TON
+            </div>
+            <button class="buy-btn" onclick="window.location.href='https://t.me/vampire2boy'">شراء الآن</button>
         </div>
-      </div><div class="bg-gray-100 p-6 rounded-3xl border border-gray-200 card-hover">
-    <div class="text-lg font-mono mb-2">@crypto_x</div>
-    <div class="text-gray-500 text-sm mb-4">التصنيف: كريبتو</div>
-    <div class="flex justify-between items-center">
-      <span class="text-green-500 font-bold text-lg">35 TON</span>
-      <a href="#contact" class="text-blue-500 hover:underline">شراء</a>
-    </div>
-  </div>
 
-  <div class="bg-gray-100 p-6 rounded-3xl border border-gray-200 card-hover">
-    <div class="text-lg font-mono mb-2">@shopiq</div>
-    <div class="text-gray-500 text-sm mb-4">التصنيف: متجر</div>
-    <div class="flex justify-between items-center">
-      <span class="text-green-500 font-bold text-lg">25 TON</span>
-      <a href="#contact" class="text-blue-500 hover:underline">شراء</a>
-    </div>
-  </div>
-</div>
+        <div class="product-card scroll-el" style="transition-delay: 100ms;">
+            <span class="badge">كريبتو</span>
+            <div class="username">@crypto_x</div>
+            <div class="price-tag">
+                <i class="fas fa-gem"></i> 35 TON
+            </div>
+            <button class="buy-btn" onclick="window.location.href='https://t.me/vampire2boy'">شراء الآن</button>
+        </div>
 
-  </section>  <!-- How to Buy Section -->  <section class="max-w-6xl mx-auto p-10 mt-16 bg-gray-50 rounded-2xl shadow-lg fade-in">
-    <h3 class="text-3xl font-semibold mb-6 text-center">كيف تشتري</h3>
-    <ol class="list-decimal list-inside text-gray-600 space-y-3 text-lg">
-      <li>اختر اليوزر الذي ترغب بشرائه من الأعلى.</li>
-      <li>تواصل معي عبر يوزري <strong>@vampire2boy</strong>.</li>
-      <li>ادفع المبلغ عبر محفظة TON الخاصة بي.</li>
-      <li>سأقوم بتحويل اليوزر لك رسمياً بعد الدفع.</li>
-    </ol>
-  </section>  <!-- Contact Section -->  <section id="contact" class="max-w-6xl mx-auto p-10 mt-16 text-center rounded-2xl shadow-lg fade-in bg-white">
-    <h3 class="text-3xl font-semibold mb-4">تواصل معي</h3>
-    <p class="text-gray-600 mb-2">يوزر التليكرام: <a href="https://t.me/vampire2boy" class="text-blue-500 hover:underline">@vampire2boy</a></p>
-    <p class="text-gray-600">محفظة TON: <span class="font-mono text-green-500">EQxxxxxxxxxxxxxxxxxxxxxx</span></p>
-  </section>  <!-- Footer -->  <footer class="max-w-6xl mx-auto p-6 mt-16 text-center text-gray-500">
-    © 2026 علي محسن. كل الحقوق محفوظة.
-  </footer></body>
+        <div class="product-card scroll-el" style="transition-delay: 200ms;">
+            <span class="badge">متجر</span>
+            <div class="username">@shopiq</div>
+            <div class="price-tag">
+                <i class="fas fa-gem"></i> 25 TON
+            </div>
+            <button class="buy-btn" onclick="window.location.href='https://t.me/vampire2boy'">شراء الآن</button>
+        </div>
+        
+        <div class="product-card scroll-el" style="transition-delay: 300ms;">
+            <span class="badge">مميز</span>
+            <div class="username">@ali_king</div>
+            <div class="price-tag">
+                <i class="fas fa-gem"></i> 50 TON
+            </div>
+            <button class="buy-btn" onclick="window.location.href='https://t.me/vampire2boy'">شراء الآن</button>
+        </div>
+    </div>
+
+    <footer>
+        <p>جميع الحقوق محفوظة © 2026 علي محسن</p>
+        <br>
+        <a href="https://t.me/vampire2boy" class="social-link" target="_blank">
+            تواصل مباشر: @vampire2boy
+        </a>
+    </footer>
+
+    <script>
+        // كود الأنميشن عند النزول
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('show');
+                }
+            });
+        });
+
+        const hiddenElements = document.querySelectorAll('.scroll-el');
+        hiddenElements.forEach((el) => observer.observe(el));
+    </script>
+
+</body>
 </html>
