@@ -1,5 +1,4 @@
-<!DOCTYPE html>
-<html lang="ar" dir="rtl">
+ <!DOCTYPE html><html lang="ar" dir="rtl">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,83 +6,76 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
     body {
-      background-image: url('https://upload.wikimedia.org/wikipedia/commons/f/f6/Flag_of_Iraq.svg');
-      background-size: cover;
-      background-position: center;
-      backdrop-filter: blur(6px);
+      background-color: #ffffff;
+      color: #333;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    .fade-in {
+      opacity: 0;
+      animation: fadeIn 1.5s forwards;
+    }
+    @keyframes fadeIn {
+      to { opacity: 1; }
+    }
+    .card-hover:hover {
+      transform: scale(1.05);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+      transition: all 0.3s ease;
     }
   </style>
 </head>
-<body class="text-gray-100 font-sans">
-
-  <!-- Header -->
-  <header class="bg-gray-900 bg-opacity-80 p-4 shadow-md">
+<body>  <!-- Header -->  <header class="bg-white shadow-md p-6 fixed w-full z-50">
     <div class="max-w-6xl mx-auto flex justify-between items-center">
-      <h1 class="text-2xl font-bold">سوق اليوزرات - علي محسن</h1>
+      <h1 class="text-3xl font-bold flex items-center">🟦🇮🇶 سوق اليوزرات - علي محسن</h1>
       <a href="#contact" class="bg-blue-600 hover:bg-blue-500 text-white px-4 py-2 rounded-lg">تواصل معي</a>
     </div>
-  </header>
-
-  <!-- Hero Section -->
-  <section class="max-w-6xl mx-auto p-6 mt-6 bg-gray-900 bg-opacity-70 rounded-2xl shadow-xl text-center">
-    <h2 class="text-3xl font-bold mb-3">مرحباً بك في منصتي لبيع وشراء يوزرات التليكرام</h2>
-    <p class="text-gray-300 mb-4">تواصل عبر يوزري <strong>@vampire2boy</strong> وادفع مباشرة عبر محفظة TON.</p>
-  </section>
-
-  <!-- Listings Section -->
-  <section class="max-w-6xl mx-auto p-6 mt-6">
-    <h3 class="text-2xl font-semibold mb-4 text-center">اليوزرات المتاحة</h3>
-    <div class="grid md:grid-cols-3 gap-6">
-      <!-- Example Cards -->
-      <div class="bg-gray-800 p-5 rounded-xl border border-gray-700 hover:scale-105 transform transition duration-300">
-        <div class="text-lg font-mono mb-1">@iraqstore</div>
-        <div class="text-gray-400 text-sm mb-2">التصنيف: بزنس</div>
+  </header>  <!-- Hero Section -->  <section class="max-w-6xl mx-auto mt-24 p-10 text-center fade-in rounded-2xl">
+    <h2 class="text-4xl md:text-5xl font-bold mb-4">مرحباً بك في منصتي لبيع وشراء يوزرات التليكرام</h2>
+    <p class="text-gray-600 text-lg md:text-xl mb-6">تواصل عبر يوزري <strong>@vampire2boy</strong> وادفع مباشرة عبر محفظة TON.</p>
+    <a href="#listings" class="bg-blue-600 hover:bg-blue-500 text-white px-6 py-3 rounded-full text-lg">استعرض اليوزرات</a>
+  </section>  <!-- Listings Section -->  <section id="listings" class="max-w-6xl mx-auto p-6 mt-16">
+    <h3 class="text-3xl font-semibold mb-8 text-center fade-in">اليوزرات المتاحة</h3>
+    <div class="grid md:grid-cols-3 gap-8">
+      <!-- Example Card -->
+      <div class="bg-gray-100 p-6 rounded-3xl border border-gray-200 card-hover">
+        <div class="text-lg font-mono mb-2">@iraqstore</div>
+        <div class="text-gray-500 text-sm mb-4">التصنيف: بزنس</div>
         <div class="flex justify-between items-center">
-          <span class="text-green-400 font-bold">80 TON</span>
-          <a href="#contact" class="text-blue-400 hover:underline">شراء</a>
+          <span class="text-green-500 font-bold text-lg">80 TON</span>
+          <a href="#contact" class="text-blue-500 hover:underline">شراء</a>
         </div>
-      </div>
-      <div class="bg-gray-800 p-5 rounded-xl border border-gray-700 hover:scale-105 transform transition duration-300">
-        <div class="text-lg font-mono mb-1">@crypto_x</div>
-        <div class="text-gray-400 text-sm mb-2">التصنيف: كريبتو</div>
-        <div class="flex justify-between items-center">
-          <span class="text-green-400 font-bold">35 TON</span>
-          <a href="#contact" class="text-blue-400 hover:underline">شراء</a>
-        </div>
-      </div>
-      <div class="bg-gray-800 p-5 rounded-xl border border-gray-700 hover:scale-105 transform transition duration-300">
-        <div class="text-lg font-mono mb-1">@shopiq</div>
-        <div class="text-gray-400 text-sm mb-2">التصنيف: متجر</div>
-        <div class="flex justify-between items-center">
-          <span class="text-green-400 font-bold">25 TON</span>
-          <a href="#contact" class="text-blue-400 hover:underline">شراء</a>
-        </div>
-      </div>
+      </div><div class="bg-gray-100 p-6 rounded-3xl border border-gray-200 card-hover">
+    <div class="text-lg font-mono mb-2">@crypto_x</div>
+    <div class="text-gray-500 text-sm mb-4">التصنيف: كريبتو</div>
+    <div class="flex justify-between items-center">
+      <span class="text-green-500 font-bold text-lg">35 TON</span>
+      <a href="#contact" class="text-blue-500 hover:underline">شراء</a>
     </div>
-  </section>
+  </div>
 
-  <!-- How to Buy Section -->
-  <section class="max-w-6xl mx-auto p-6 mt-6 bg-gray-900 bg-opacity-70 rounded-2xl shadow-xl">
-    <h3 class="text-2xl font-semibold mb-4 text-center">كيف تشتري</h3>
-    <ol class="list-decimal list-inside text-gray-300 space-y-2">
+  <div class="bg-gray-100 p-6 rounded-3xl border border-gray-200 card-hover">
+    <div class="text-lg font-mono mb-2">@shopiq</div>
+    <div class="text-gray-500 text-sm mb-4">التصنيف: متجر</div>
+    <div class="flex justify-between items-center">
+      <span class="text-green-500 font-bold text-lg">25 TON</span>
+      <a href="#contact" class="text-blue-500 hover:underline">شراء</a>
+    </div>
+  </div>
+</div>
+
+  </section>  <!-- How to Buy Section -->  <section class="max-w-6xl mx-auto p-10 mt-16 bg-gray-50 rounded-2xl shadow-lg fade-in">
+    <h3 class="text-3xl font-semibold mb-6 text-center">كيف تشتري</h3>
+    <ol class="list-decimal list-inside text-gray-600 space-y-3 text-lg">
       <li>اختر اليوزر الذي ترغب بشرائه من الأعلى.</li>
       <li>تواصل معي عبر يوزري <strong>@vampire2boy</strong>.</li>
       <li>ادفع المبلغ عبر محفظة TON الخاصة بي.</li>
       <li>سأقوم بتحويل اليوزر لك رسمياً بعد الدفع.</li>
     </ol>
-  </section>
-
-  <!-- Contact Section -->
-  <section id="contact" class="max-w-6xl mx-auto p-6 mt-6 bg-gray-900 bg-opacity-70 rounded-2xl shadow-xl text-center">
-    <h3 class="text-2xl font-semibold mb-2">تواصل معي</h3>
-    <p class="text-gray-300 mb-2">يوزر التليكرام: <a href="https://t.me/vampire2boy" class="text-blue-400 hover:underline">@vampire2boy</a></p>
-    <p class="text-gray-300">محفظة TON: <span class="font-mono text-green-400">EQxxxxxxxxxxxxxxxxxxxxxx</span></p>
-  </section>
-
-  <!-- Footer -->
-  <footer class="max-w-6xl mx-auto p-6 mt-6 text-center text-gray-400">
+  </section>  <!-- Contact Section -->  <section id="contact" class="max-w-6xl mx-auto p-10 mt-16 text-center rounded-2xl shadow-lg fade-in bg-white">
+    <h3 class="text-3xl font-semibold mb-4">تواصل معي</h3>
+    <p class="text-gray-600 mb-2">يوزر التليكرام: <a href="https://t.me/vampire2boy" class="text-blue-500 hover:underline">@vampire2boy</a></p>
+    <p class="text-gray-600">محفظة TON: <span class="font-mono text-green-500">EQxxxxxxxxxxxxxxxxxxxxxx</span></p>
+  </section>  <!-- Footer -->  <footer class="max-w-6xl mx-auto p-6 mt-16 text-center text-gray-500">
     © 2026 علي محسن. كل الحقوق محفوظة.
-  </footer>
-
-</body>
+  </footer></body>
 </html>
